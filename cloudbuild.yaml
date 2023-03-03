@@ -1,0 +1,11 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "docker build --build-arg BUILD_ID=$_BUILD_ID -t gcr.io/traces-379616/api:${_BUILD_ID} .",
+      ]
+substitutions:
+  _BUILD_ID: cloudbuild_unknown # default value
+images: ["gcr.io/traces-379616/api:${_BUILD_ID}"]
